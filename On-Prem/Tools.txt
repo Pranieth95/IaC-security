@@ -1,0 +1,7 @@
+Tool				Use Case
+Trivy/Grype			Scan images or base boxes for CVEs
+Checkov	Static 			IaC scanning (Terraform, Ansible, etc.)
+Ansible-lint			Lint and secure your playbooks
+Kube-bench			If Kubernetes is used post-IaC
+Secrets Scanner (Gitleaks)	Find secrets in IaC repos
+LinPEAS / WinPEAS		For post-deploy enumeration
