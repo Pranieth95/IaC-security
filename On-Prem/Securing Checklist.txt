@@ -1,0 +1,32 @@
+1. Secrets & Credentials
+•	All secrets (DB creds, API keys) are stored securely (e.g., HashiCorp Vault, Ansible Vault)
+•	No hardcoded secrets in Vagrantfiles, playbooks, or templates
+•	Default credentials are rotated or removed after provisioning
+•	SSH keys are managed securely with strict permissions and rotation
+
+ 2. Dependency Management
+•	Base images (e.g., ubuntu/bionic64) are regularly updated
+•	All software and roles used in provisioning are from verified, trusted sources
+•	Use tools like Grype, Trivy, or Clair to scan Docker images and OS packages
+
+ 3. Hardening & Post-Provision Cleanup
+•	Unused services (e.g., WinRM, SSH, Vagrant agents) are disabled post-deploy
+•	Apply OS-level hardening (firewall rules, disable root login, etc.)
+•	Files/keys/scripts used during provisioning are deleted/cleaned up
+•	Use CIS benchmarks for secure configurations (especially Windows/Linux hardening)
+
+ 4. Access Control
+•	Least privilege applied to everyone accessing the pipeline or hosts
+•	Pipeline execution logs and audit trails are stored and reviewed
+•	Only signed/approved IaC scripts are used (Git branch protection, PR reviews)
+
+ 5. IaC Pipeline Security
+•	Restrict who can run vagrant up or modify the Vagrantfile
+•	Restrict local access to hypervisor if Vagrant is installed locally
+•	Integrate IaC scanning tools (e.g., Checkov, TFSec, KICS) into CI pipelines
+
+ 6. Monitoring & Detection
+•	Monitor SSH, WinRM, and Docker socket usage
+•	Alert on unusual provisioning behavior or reboots
+•	Integrate with SIEM for centralized logging (e.g., ELK, Splunk, Wazuh)
+

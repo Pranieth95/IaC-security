@@ -1,0 +1,30 @@
+ 1. Check for Exposed Secrets
+•	Search Vagrantfile, playbooks, and shell scripts for password, token, or key
+•	Look in Ansible templates for hardcoded DB creds (.sql, .conf)
+•	Check synced folders like /tmp/provision for leftover secrets or config files
+
+2. Test for Default Credentials
+•	Try logging into Vagrant VMs with vagrant:vagrant
+•	Check Jenkins, MySQL, etc., for default admin:admin or root:root
+•	Attempt SSH access using known SSH keys or Ansible default private keys
+
+ 3. Look for Remote Code Execution
+•	See if ansible-playbook or Vagrant allows you to run arbitrary commands
+•	Exploit shell tasks in playbooks that do not sanitize input
+•	Abuse tools like WinRM or exposed Docker APIs for lateral movement
+
+4. Check Image Trust Issues
+•	Identify if Vagrant/Docker is pulling images from untrusted sources
+•	Check if old/abandoned boxes like ubuntu/xenial64 are used (check CVEs)
+•	Try using tools like Grype to scan the base images
+
+ 5. Misconfigured Networking
+•	Look for private_network misconfigurations → try sniffing or ARP spoofing
+•	Check Docker containers for open ports or exposed management APIs
+•	See if IPs like 172.20.x.x are accessible from your host
+
+ 6. Privilege Escalation / Access Abuse
+•	Can you modify a playbook and inject a backdoor (e.g., reverse shell)?
+•	Are there any scripts executed as root without input sanitization?
+•	Can you SSH into one provisioned host and pivot to others?
+
