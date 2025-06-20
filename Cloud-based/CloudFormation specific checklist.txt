@@ -1,0 +1,15 @@
+Stack & Template Management
+•	Validate templates with cfn-lint or CloudFormation Designer.
+•	Use Change Sets to preview stack changes before applying.
+•	Set up rollback triggers for critical stacks.
+
+Security Scanning
+•	Use CFN-Nag to scan templates for insecure configurations.
+•	Check for AWS::IAM::Policy and AWS::EC2::SecurityGroup misconfigurations.
+•	Validate use of !Ref, !GetAtt, and !Sub to ensure correct referencing and logic.
+
+Stack Security
+•	Use StackSets with delegated permissions carefully.
+•	Set TerminationProtection for critical stacks.
+•	Tag resources with security metadata (e.g., owner, environment, sensitivity).
+

@@ -1,0 +1,15 @@
+ State Management
+•	Store terraform.tfstate remotely (e.g., S3 with encryption + DynamoDB locking).
+•	Enable state encryption at rest and in transit.
+•	Restrict access to state files via IAM policies.
+•	Never commit state files or .terraform directories to Git.
+
+ Security Tools
+•	Use TFSec and Checkov to scan .tf files.
+•	Enable Sentinel policies (for Terraform Enterprise) for policy-as-code enforcement.
+•	Validate all terraform plan and apply operations in CI/CD before production.
+
+ Module Hygiene
+•	Use source with version-pinned modules.
+•	Avoid dynamic blocks with unvalidated input.
+•	Avoid reusing modules without understanding what resources they deploy.

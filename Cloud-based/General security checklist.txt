@@ -1,0 +1,45 @@
+Secrets & Sensitive Data
+•	Never hardcode secrets (API keys, DB creds) in templates or code.
+•	Use secure secret managers (e.g., AWS Secrets Manager, Vault, SSM Parameter Store).
+•	Leverage automated secrets scanning tools like TruffleHog, GitLeaks, or TFSec.
+
+Dependency & Module Management
+•	Pin versions of IaC modules and provider plugins.
+•	Verify sources of community modules (e.g., Terraform Registry, GitHub).
+•	Periodically update to patched versions (watch for CVEs in base images/providers).
+
+Avoid Insecure Defaults
+•	Remove default passwords/users after provisioning.
+•	Avoid overly permissive network rules (e.g., 0.0.0.0/0 on port 22).
+•	Validate default IAM roles/policies — remove wildcard permissions (*).
+
+Least Privilege Access Control
+•	Define strict IAM policies for roles created via IaC.
+•	Restrict user/service access to IaC pipeline via least privilege.
+•	Use MFA and IAM roles instead of long-lived access keys.
+
+Configuration Validation
+•	Use linters and security scanners (e.g., Checkov, TFSec, CFN-Nag, CFN-Lint).
+•	Validate syntax and schema before deployment.
+•	Validate changes with dry-run / planning (terraform plan, change sets).
+
+Version Control & CI/CD Integration
+•	Use Git repositories to manage IaC templates.
+•	Enforce code reviews for all IaC changes (use GitHub/GitLab PRs).
+•	Set up CI/CD pipelines for security validation before deployment.
+
+Logging & Auditing
+•	Enable AWS CloudTrail for logging all stack activities.
+•	Enable Terraform audit logs if using Terraform Cloud or Enterprise.
+•	Ensure IaC pipeline logs are securely stored and monitored.
+
+Destructive Actions Monitoring
+•	Use approval gates for high-impact changes (e.g., RDS deletion, IAM changes).
+•	Use resource protection like deletion_protection = true where applicable.
+•	Validate terraform destroy or stack deletions are access-controlled.
+
+ Testing & Monitoring
+•	Use test environments (Dev/Staging) before Production.
+•	Monitor stacks and infrastructure for drift (CloudFormation Drift Detection, Terraform plan comparison).
+•	Continuously monitor provisioned infra for compliance (e.g., AWS Config, Sentinel).
+
